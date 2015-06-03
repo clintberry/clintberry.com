@@ -1,0 +1,32 @@
+baseurl = "http://clintberry.com"
+languageCode = "en-us"
+title = "Clint Berry"
+
+[params]
+    sidebartitle = "Clint Berry"
+    sidebartagline = "Full Stack Developer. Wannabe Entrepreneur."
+
+[[menu.main]]
+    name = "About"
+    url = "/about"
+
+[[menu.main]]
+    name = "Blog"
+    url = "/posts"
+
+
+
+
+[[menu.social]]
+    pre = "<i class='fa fa-twitter-square'></i>"
+    url = "http://www.twitter.com/clinton_berry"
+    identifier = "clinton_berry"
+[[menu.social]]
+    pre = "<i class='fa fa-linkedin-square'></i>"
+    url = "http://www.linkedin.com/in/clintonberry"
+    identifier = "linkedin"
+[[menu.social]]
+    pre = "<i class='fa fa-google-plus-square'></i>"
+    url = "https://plus.google.com/116690395418514703068/posts"
+    identifier = "googleplus"
+
