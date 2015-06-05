@@ -1,13 +1,12 @@
 baseurl = "http://clintberry.github.io"
 languageCode = "en-us"
 title = "Clint Berry"
-description = "Full Stack Developer. Wannabe Enrepreneur."
 theme = "hugo-redlounge"
 
 [params]
     sidebartitle = "Clint Berry"
     sidebartagline = "Full Stack Developer. Wannabe Entrepreneur."
-    description = "Full-stack Developer. Wannabe Entrepreneur."
+    description = "Full Stack Developer. Wannabe Enrepreneur."
 
 
 [[menu.main]]
@@ -16,9 +15,7 @@ theme = "hugo-redlounge"
 
 [[menu.main]]
     name = "Blog"
-    url = "/posts"
-
-
+    url = "/blog"
 
 
 [[menu.social]]

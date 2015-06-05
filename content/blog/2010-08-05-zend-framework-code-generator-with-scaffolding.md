@@ -1,5 +1,5 @@
 ---
-title: 'Zend Framework Code Generator With Scaffolding &#8211; ZFcodo'
+title: 'Zend Framework Code Generator With Scaffolding: ZFcodo'
 author: Clint Berry
 layout: post
 date: 2010-08-05
@@ -18,9 +18,9 @@ While I am a huge fan of Zend Framework, I miss having the code generation that 
   
 A little background on Qcubed: [Qcubed][2] is a framework branched off of the [Qcodo][3] project. Qcubed code generation connects to your already built database and generates your models, views, and controllers based on your database schema. Qcubed has a built-in ORM that uses the Active Record model and also a custom querying language similar to Doctrine ORM. [(Go here for more information on the Qcubed project)][2]
 
-The advantage to using Qcubed over Doctrine is that I have it generating not only my models, but also basic forms, controllers, and views. I will also be running some benchmark tests because I think that out of the box, Qcubed ORM performs better than Doctrine. I have dubbed this project &#8220;ZFcodo&#8221;, which references the origins of the Qcubed project: Qcodo. So far I have a hacked together proof of concept that I think is interesting. Here is what I have with some example code so you can see why this will save you time setting up your Zend Framework Projects.
+The advantage to using Qcubed over Doctrine is that I have it generating not only my models, but also basic forms, controllers, and views. I will also be running some benchmark tests because I think that out of the box, Qcubed ORM performs better than Doctrine. I have dubbed this project "ZFcodo", which references the origins of the Qcubed project: Qcodo. So far I have a hacked together proof of concept that I think is interesting. Here is what I have with some example code so you can see why this will save you time setting up your Zend Framework Projects.
 
-To get this going, I started with a basic Zend Framework application structure. Then I copied the entire Qcubed project into my custom library folder &#8220;ZFcodo&#8221;. I stripped out anything I could see from Qcubed that was specifically for the framework, and not related to the ORM or code generation and altered some files a little to match a Zend Framework application. I then created a ZFcodo manager file that would set all the constants needed and added the following to /application/configs/application.ini:
+To get this going, I started with a basic Zend Framework application structure. Then I copied the entire Qcubed project into my custom library folder ZFcodo. I stripped out anything I could see from Qcubed that was specifically for the framework, and not related to the ORM or code generation and altered some files a little to match a Zend Framework application. I then created a ZFcodo manager file that would set all the constants needed and added the following to /application/configs/application.ini:
 
 <pre class="wp-code-highlight prettyprint">; ---
 ; Database and ZFcodo settings
