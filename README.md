@@ -1,4 +1,4 @@
 # clintberry.com
 
-Build with Hugo, a static site generator written in Go.
+Built with Hugo, a static site generator written in Go.
 
