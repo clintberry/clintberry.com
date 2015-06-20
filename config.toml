@@ -1,7 +1,8 @@
-baseurl = "http://clintberry.github.io"
+baseurl = "http://clintberry.com"
 languageCode = "en-us"
 title = "Clint Berry"
 theme = "hugo-redlounge"
+disqusShortname = "clintberrycom"
 
 [params]
     sidebartitle = "Clint Berry"
