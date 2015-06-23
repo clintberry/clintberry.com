@@ -13,8 +13,9 @@ A Unique Opportunity
 - A cool product, and cool opportunity, not very much equity
 
 Almost Dead #1
+- Running out of money... time to beg
 - Raised money from rich uncle
-- No henry schein deal and fallout. "You're a liar!"
+- No henry schein deal and fallout. "You're a liar!" "Our pockets are deeper than yours..."
 - Meeting individually to make sure people were on his side
 
 Almost Dead #2
@@ -35,6 +36,7 @@ Almost Dead #3
 - Focussed fund-raising in May
 - Excuses VCs used to turn us down: In Utah, first time founders (weren't impressed with us), market size isn't big enough
 - Playing the VC game... One term sheet is enough
+- Churn? I don't even want May's numbers so please don't tell them to me...
 
 Time To Grow
 - How to make the tech stack keep up
