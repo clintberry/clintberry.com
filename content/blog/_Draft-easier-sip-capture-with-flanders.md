@@ -3,7 +3,7 @@ title: Easy SIP Capture With Flanders
 draft: true
 author: Clint Berry
 layout: post
-date: 2015-07-20 
+date: 2015-07-20
 url: /2015/easy-sip-capture-with-flanders/
 categories:
   - SIP
@@ -22,5 +22,4 @@ So we set out to build the SIP capture tool we always wanted with those goals in
 
 ## Announcing "Flanders"
 
-Flanders is an easy-to-use sip capture utility and user interface that satisfies all our needs/wants at Weave.
-
+Flanders is an easy-to-use sip capture utility and user interface that satisfies our needs/wants at Weave. In particular, real-time capture monitoring in the GUI.

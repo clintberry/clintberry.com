@@ -14,7 +14,7 @@ A Unique Opportunity
 
 Almost Dead #1
 - Running out of money... time to beg
-- Raised money from rich uncle
+- Raised money from rich uncle (and his kids)
 - No henry schein deal and fallout. "You're a liar!" "Our pockets are deeper than yours..."
 - Meeting individually to make sure people were on his side
 
@@ -35,7 +35,7 @@ Almost Dead #3
 - Opportunistic fund-raising in November
 - Focussed fund-raising in May
 - Excuses VCs used to turn us down: In Utah, first time founders (weren't impressed with us), market size isn't big enough
-- Playing the VC game... One term sheet is enough
+- Playing the VC game... One term sheet is enough... again...
 - Churn? I don't even want May's numbers so please don't tell them to me...
 
 Time To Grow
