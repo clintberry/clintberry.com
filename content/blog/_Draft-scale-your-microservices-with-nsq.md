@@ -23,21 +23,31 @@ When you switch from one (or a handful of) monolithic application(s) to dozens o
 Granted, distributed RabbitMQ setups are not impossible, but we thought we would search for a messaging system that was designed to be distributed from its foundation. That is when I came across <a title="NSQ" href="http://nsq.io" target="_blank">NSQ</a>. Despite a crappy logo, the project has been awesome for us. Here are some of the reasons why NSQ was a good choice for us and why it may be the right choice for you.
 
 #### Distributed Architecture
+
 If you like tools with no single point of failure out of the box, then you will like NSQ. Spin up 1, or 100 different consumers/producers and they all are aware of eachother via one or more nsqlookup processes. (I have seen several commits for using the Gossip protocol, so no need for nsqlookup processes soon)
+
 #### Handles an Insane Amount of Messages
+
 While Weave has only pushed a few million messages through NSQ, I have talked to several companies on IRC pushing many millions per day through NSQ in production environments. Check out @lxfontes NSQ counter... https://twitter.com/lxfontes/status/569660077868773376 Yup, 3 commas in that sucker. And those quantities are possible with little to no tweaking.
+
 #### Simple to Get Started
+
 It is so easy to get going with NSQ. Just install the lightweight nsqd process on any machine that will be generating messages (producer). One of the huge advantages to using Go (the language NSQ is programmed in) is that there are no dependencies. It is just a single executable. Next, create an HTTP Post to localhost on the nsqd listening port and you are off to the races. Now you can create as many consumers as you want (load balancing), or publish to all consumers for pub-sub architecture. Which brings me to the elegance of the design.
+
 #### Elegant Design
+
 NSQ uses topics and channels. Every producer when posting to NSQ posts to a Topic. Every consumer that connects to NSQ connects to a Topic and a Channel. You don't need to create a topic or channel from any sort of config or admin, you just subscribe and it exists. For pub-sub, have all your consumers subscribe to a different channel name (we use host names) and all messages will be sent to each consumer. For load balancing have all your consumers connect to the same channel and all messages will only go to one consumer. Image taken from the NSQ site:
 
 <img src="https://f.cloud.github.com/assets/187441/1700696/f1434dc8-6029-11e3-8a66-18ca4ea10aca.gif" alt="NSQ Design" />
 
 #### Admin and Visualization
+
 The last reason I would recommend using NSQ is because of the simplicity of the NSQ admin tool, and also the built-in integration with Statsd/graphite. When you have dozens of micro-services communicating with each other, monitoring can get difficult. But if you standardize on using NSQ as the default way to communicate between services, then the admin and the graphite integration allow you to create a nice dashboard for easy visualization of the status of your system. At Weave we use NSQ to load balance handling phone call records so, by extension, we can use the built in metrics to track how many calls our system places and create a nice dashboard for our TV.
 
 ## Common Patterns
 
 We talked about why we chose NSQ, now here is how to set it up for some common usage messaging patterns
 
-#### 
+### Load Balancing
+
+### Pub-Sub

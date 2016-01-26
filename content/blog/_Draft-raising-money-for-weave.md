@@ -16,7 +16,7 @@ Almost Dead #1
 - Running out of money... time to beg
 - Raised money from rich uncle (and his kids)
 - No henry schein deal and fallout. "You're a liar!" "Our pockets are deeper than yours..."
-- Meeting individually to make sure people were on his side
+- Meeting individually with people at Noah's Ark (to make sure people were on his side)
 
 Almost Dead #2
 - Hiring an investor is the worst
@@ -41,3 +41,8 @@ Almost Dead #3
 Time To Grow
 - How to make the tech stack keep up
 - Integrations in legacy world
+
+- 2015 May-October: Incorrect C-corp, re-issuing all options, $400k in legal fees
+- 2015 November-December: Co-founder pay. Naivity results in friction. Co-founders back down, Brandon does so with another chip added to his shoulder.
+- 2015 December - Blake M. "The company doesn't help employees in their personal financial matters. You never give advances to anyone." - In response to Brandon asking for an advance
+
