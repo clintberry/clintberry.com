@@ -43,6 +43,6 @@ Time To Grow
 - Integrations in legacy world
 
 - 2015 May-October: Incorrect C-corp, re-issuing all options, $400k in legal fees
-- 2015 November-December: Co-founder pay. Naivity results in friction. Co-founders back down, Brandon does so with another chip added to his shoulder.
+- 2015 November-December: Co-founder pay. Naivety results in friction. Co-founders back down, Brandon does so with another chip added to his shoulder.
 - 2015 December - Blake M. "The company doesn't help employees in their personal financial matters. You never give advances to anyone." - In response to Brandon asking for an advance
 
