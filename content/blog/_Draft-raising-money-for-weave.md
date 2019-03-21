@@ -46,3 +46,6 @@ Time To Grow
 - 2015 November-December: Co-founder pay. Naivety results in friction. Co-founders back down, Brandon does so with another chip added to his shoulder.
 - 2015 December - Blake M. "The company doesn't help employees in their personal financial matters. You never give advances to anyone." - In response to Brandon asking for an advance
 
+- 2018 November - Raised 37.5M after killer year of doubling to 36M in ARR
+- 2019 January-March - Category design around "Integrated Communication"
+

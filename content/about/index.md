@@ -9,23 +9,11 @@ noread: true
 exclude: true
 nopaging: true
 notoc: true
-description: Word to your mother
 vp_ptemplate_settings:
   - 'a:2:{s:10:"categories";s:0:"";s:10:"blog_posts";i:6;}'
 ---
 
-<img src="/images/profile_photo.jpg" alt="profile_photo" width="128" height="132" />
-
 I am the co-founder and CTO of [Weave][3] and a winter 2014 [Y-combinator][4] alumni.
-  
-## Skills
-
-* Server Side: [Go][1], [NodeJS][2]
-* Front-end: Angular, Backbone, JQuery
-* Databases: Postgresql, Postgres BDR (multi-master), MongoDB, MySQL
-* Sysadmin: Linux (Ubuntu, CentOS)
-* VoIP: FreeSWITCH, OpenSIPS, Kamailio
-* Other: Node-webkit, PhoneGap
 
 ## Passions
 
@@ -62,7 +50,5 @@ I am the co-founder and CTO of [Weave][3] and a winter 2014 [Y-combinator][4] al
 
 **2006** &#8211; I land my first independent software contract for a web-based sales tracking software. The company uses it for 3 years and I sell all the rights to the software. I realize that my passion lies in web-based software, especially software-as-a-service.
 
- [1]: http://golang.org
- [2]: http://nodejs.org
  [3]: http://getweave.com
  [4]: https://www.ycombinator.com/
