@@ -6,7 +6,6 @@ date: 2019-03-19
 url: /measuring-your-engineering-culture/
 tags:
   - Culture
-  - Devops
 ---
 
 Creating the right operational culture for your engineering team is critical to having a high performing team. More than ever building the right products and having a very fast time-to-market is what will separate winners from losers. Without a good culture, your teams will never perform well enough to keep up. 
@@ -28,7 +27,14 @@ We also have really liked the <a href="https://labs.spotify.com/2014/09/16/squad
 
 ## Westrum Culture Model
 
-The last method we use at Weave is the Westrum model. This model is primarily focussed on the transfer of information, and ultimately measures your psychological safety, as made popular by <a href="https://rework.withgoogle.com/blog/five-keys-to-a-successful-google-team/" target="_blank">Google's study on high performing teams</a>. The <a href="https://qualitysafety.bmj.com/content/13/suppl_2/ii22" target="_blank">study itself</a> is old, but a good read. The study also doesn't come with a pre-built survey you can use, but others have made surveys off of this model. We took what we thought were the most important questions to ask and made our own survey: [TODO]
+The last method we use at Weave is the Westrum model. This model is primarily focussed on the transfer of information, and ultimately measures your psychological safety, as made popular by <a href="https://rework.withgoogle.com/blog/five-keys-to-a-successful-google-team/" target="_blank">Google's study on high performing teams</a>. The <a href="https://qualitysafety.bmj.com/content/13/suppl_2/ii22" target="_blank">study itself</a> is old, but a good read. The study also doesn't come with a pre-built survey you can use, but others have made surveys off of this model. We looked at a couple we liked and settled with <a href="https://clintberry.com/images/westrum-survey.png" target="_blank">these questions</a> for now.
+
+If you have any question or comments, feel free to tweet at me.
+
+
+
+
+
 
 
 
