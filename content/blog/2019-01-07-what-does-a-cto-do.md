@@ -1,5 +1,5 @@
 ---
-title: What does a CTO do?
+title: What Does a CTO Do?
 author: Clint Berry
 layout: post
 date: 2019-01-07 
