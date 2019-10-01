@@ -16,7 +16,7 @@ But how do you measure your culture? Let me share with you three methods we use 
 
 We came across this culture model on <a href="" target="_blank">a great InfoQ article about the importance of devops culture</a>. The competing values framework suggests there are four categories of culture that all compete against eachother: **Clan, Hierarchy, Adhocracy, & Market**. This model also has a pre-built survey you can give to your team and has a great visualization method for the results. We liked this model because it allowed us to design the culture that was right for us and then work toward getting there by hiring people that pushed us to the values we wanted. 
 
-**NOTE:** We altered the wording on some of the questions, particularly in the hierarchy section, that were worded (in our opinion) too negativley. <a href="https://docs.google.com/spreadsheets/d/1blqC3UMTD5A71l0Ey1B5MX8GOjZ5oGzIZp8mwM1d4Dc/edit?usp=sharing" target="_blank">Here is our modified questionaire</a> (including a radar chart on second tab).
+**NOTE:** We altered the wording on some of the questions, particularly in the hierarchy section, that were worded (in our opinion) too negatively. <a href="https://docs.google.com/spreadsheets/d/1blqC3UMTD5A71l0Ey1B5MX8GOjZ5oGzIZp8mwM1d4Dc/edit?usp=sharing" target="_blank">Here is our modified questionaire</a> (including a radar chart on second tab).
 
 Another thing we have done that is valuable is to create visualizations to view the department as a whole, individual teams, and individual chapters (backend, frontend, product, etc). This gives us a great pulse on the team as a whole and how we are trending in each discipline.
 

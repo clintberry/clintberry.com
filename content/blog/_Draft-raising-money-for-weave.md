@@ -48,4 +48,8 @@ Time To Grow
 
 - 2018 November - Raised 37.5M after killer year of doubling to 36M in ARR
 - 2019 January-March - Category design around "Integrated Communication"
+- 2019 Mary era - fight for the culture and drama in August. Jared gets fired as a result (although investors deny any specific event as the reason)
+- 2019 September - raise $70M at triple the value 
+
+
 
