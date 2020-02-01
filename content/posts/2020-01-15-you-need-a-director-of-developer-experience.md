@@ -1,10 +1,9 @@
 ---
 title: Why You Need a Director of Developer Experience
 author: Clint Berry
-layout: post
 date: 2020-01-15  
 url: /director-of-developer-experience/
-categories:
+tags:
   - Culture
 ---
 
