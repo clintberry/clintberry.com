@@ -12,7 +12,7 @@ I get asked this question a lot: _What does a CTO do?_ As a "rookie CTO" and co-
 
 After interviewing a dozen or so CTOs at a similar stage or later stage than Weave (~30 million+ ARR and 30+ engineers), there is one thing that stuck out: they all do things a little bit differently. It was actually kind of refreshing to hear there is a flexibility, of sorts, with the role. CTO: Choose your own adventure! :-)
 
-In addition to interviews, I read everything I could find online. <a href="http://www.awadallah.com/blog/2013/03/05/what-does-a-cto-do-2/" target="_blank">Amr Awadallah has a great blog post on what CTOs do</a>. As I was figuring out what my focus should be I relied on this post heavily. In particular the three main roles of the CTO really resonated with me:
+In addition to interviews, I read everything I could find online. [Amr Awadallah has a great blog post](http://www.awadallah.com/blog/2013/03/05/what-does-a-cto-do-2/) on what CTOs do</a>. As I was figuring out what my focus should be I relied on this post heavily. In particular the three main roles of the CTO really resonated with me:
 
 **The Roles of the CTO**
 
@@ -45,9 +45,9 @@ Another difference is that we don't have teams of PhDs solving cutting edge or "
 
 When you are marketing to small businesses, the strategy aligns a lot closer to a consumer software company. This means the "speed" of the product engineering department is one of, if not THE, most critical thing to focus on.
 
-I recently read the book <a href="https://www.amazon.com/Accelerate-Software-Performing-Technology-Organizations/dp/1942788339" target="_blank">Accelerate</a> (not an affiliate link), which only hammered this point home by backing it up with real data. Culture and devops are the single biggest drivers of high performing technology companies. So I have opted to own those things at Weave. In fact, the devops team reports up to me instead of the VP of Engineering.
+I recently read the book [Accelerate](https://www.amazon.com/Accelerate-Software-Performing-Technology-Organizations/dp/1942788339) (not an affiliate link), which only hammered this point home by backing it up with real data. Culture and devops are the single biggest drivers of high performing technology companies. So I have opted to own those things at Weave. In fact, the devops team reports up to me instead of the VP of Engineering.
 
-For more details on how we divide up all the technology roles at Weave, check out this google doc: <a href="https://docs.google.com/document/d/1v4ZNeZUPdTzJOP6xoQgrzqPcuB-HxcToZ0fgCZCC9tQ/edit?usp=sharing">Roles of Technology and Product Leaders at Weave</a>
+For more details on how we divide up all the technology roles at Weave, check out this google doc: [Roles of Technology and Product Leaders at Weave](https://docs.google.com/document/d/1v4ZNeZUPdTzJOP6xoQgrzqPcuB-HxcToZ0fgCZCC9tQ/edit?usp=sharing)
 
 It also has links to many sources of inspiration at the bottom.
 

@@ -1,146 +1,108 @@
-baseURL = "https://clintberry.com"
+baseurl = "https://clintberry.com"
 title = "Clint Berry"
-# for smart copyright line, leave this blank and check [params.copyright]
-copyright = ""
 
-theme = "minimo"
+theme = "hugo-coder"
+
+languagecode = "en"
+defaultcontentlanguage = "en"
+
+paginate = 20
+canonifyurls = true
+
+pygmentsstyle = "b2"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
 
 disqusShortname = "clintberrycom"
-googleAnalytics = "UA-7117674-2"
 
-Paginate = 10
-preserveTaxonomyNames = true
 
-enableRobotsTXT = true # generate robots.txt
+[params]
+    author = "Clint Berry"
+    description = "Programmer, Entrepreneur, Culture fanatic"
+    keywords = "engineering, culture, CTO"
+    info = ""
+    avatarurl = "images/clint2.jpg"
+    footercontent = ""
 
-# Syntax Highlighting ( https://gohugo.io/content-management/syntax-highlighting/ )
-pygmentsCodefences = true
+    dateformat = "January 2, 2006"
 
-enableEmoji = true
+    hideCredits = false
+    hideCopyright = false
+    since = 2019
 
-# Missing translations will default to this content language
-defaultContentLanguage = "en"
+    # Git Commit in Footer, uncomment the line below to enable it.
+    # commit = "https://github.com/luizdepra/hugo-coder/tree/"
 
-[params.info]
-description = "Rookie CTO at Weave"
-title404 = "Nothing's here!"
+    rtl = false
 
-[params.assets]
-favicon = "favicon.ico"
-customCSS = ["css/custom.css"]
-customJS = ["js/custom.js"]
-gopher = "" # used in 404 template ( Generator: https://gopherize.me )
+    # Specify light/dark colorscheme
+    # Supported values:
+    # "auto" (use preference set by browser)
+    # "dark" (dark background, light foreground)
+    # "light" (light background, dark foreground) (default)
+    colorscheme = "light"
 
-[params.copyright]
-prefix = ""
-holder = "Clint Berry"
-startYear = "2010"
-suffix = ""
+    # Series see also post count
+    maxSeeAlsoItems = 5
 
-[params.settings]
-# date & time format: https://golang.org/pkg/time/
-dateFormat = "Jan 02, 2006"
-listDateFormat = "2006 Jan 02"
-archiveDateFormat = "2006 Jan 02"
-hideEntryNavigation = ["page"] # boolean / array of sections
-hideEntryMeta = ["page"] # boolean / array of sections
-showReadingTime = true
-showLastmod = true
-taxonomyCloudShuffle = true
-accentColor = "#ffcd00"
-hideMainMenu = true
-
-[params.sidebar]
-enable = true
-
-[params.widgets]
-header = []
-homepage = ["recent_posts"]
-sidebar = ["about","search","sidebar_menu","taxonomy_cloud","social_menu"]
-footer = []
-
-[params.opengraph.facebook]
-admins = [] # array of Facebook IDs
-appID = ""
-pageID = ""
-
-[params.opengraph.twitter]
-page = "" # Twitter page username
-
-[params.seo]
-# Title Separator: - – — · • * ⋆ | ~ « » < >
-titleSeparator = "•"
-
-[params.social]
-#codepen = "MunifTanjim"
-email = "clint@beingberry.com"
-#facebook = "MunifTanjim"
-github = "clintberry"
-#gitlab = "MunifTanjim"
-#instagram = "MunifTanjim"
-linkedin = "clintonberry"
-twitter = "clinton_berry"
-#telegram = "MunifTanjim"
-#google_scholar = "qc6CJjYAAAAJ"
-#youtube = "UCT-U0rNerYxItGcuoPX-WYA"
-
-[params.comments]
-enable = false
-
-# Isso: https://posativ.org/isso/
-[params.comments.isso]
-enable = false
-scriptSrc = "" # "https://isso.example.com/js/embed.min.js"
-dataAttrs = "" # "data-isso='https://isso.example.com' data-isso-require-author='true'"
-
-[params.comments.staticman]
-enable = true
-apiEndpoint = "https://api.staticman.net/v2/entry"
-maxDepth = 2
-username = "MunifTanjim"
-repository = "minimo"
-branch = "master"
-
-# Utterances: https://utteranc.es
-[params.comments.utterances]
-enable = false
-issueTerm = "pathname" # pathname / url / title
-
-[params.comments.utterances.github]
-username = "MunifTanjim"
-repository = "minimo"
-
-[params.search]
-client = "fuse" # algolia / fuse / lunr
-
-[params.search.algolia]
-appId = ""
-indexName = ""
-searchApiKey = ""
+    # Custom CSS
+    custom_css = []
+    
+    # Custom JS
+    custom_js = []
 
 [taxonomies]
-# author = "authors"
-category = "categories"
-series = "series"
-tag = "tags"
+  category = "categories"
+  series = "series"
+  tag = "tags"
 
-[permalinks]
-page = "/:slug/"
+[[params.social]]
+    name = "Github"
+    icon = "fab fa-github"
+    weight = 1
+    url = "https://github.com/clintberry/"
+[[params.social]]
+    name = "Twitter"
+    icon = "fab fa-twitter"
+    weight = 3
+    url = "https://twitter.com/clinton_berry/"
+[[params.social]]
+    name = "LinkedIn"
+    icon = "fab fa-linkedin"
+    weight = 4
+    url = "https://www.linkedin.com/in/clintonberry/"
+[[params.social]]
+    name = "RSS"
+    icon = "fas fa-rss"
+    weight = 6
+    url = "https://clintberry.com/index.xml"
+    rel = "alternate"
+    type = "application/rss+xml"
 
-[[menu.main]]
-# name = "Repo"
-# weight = -10
-# identifier = "repository"
-# url = "https://github.com/MunifTanjim/minimo"
-
-[blackfriday]
-hrefTargetBlank = false
 
 [languages]
-# edit this block for your own language
-[languages.en]
-lang = "en"
-languageName = "English"
-weight = 1
+    [languages.en]
+        languagename = "English"
 
+        [languages.en.menu]
+
+            [[languages.en.menu.main]]
+            name = "About"
+            weight = 1
+            url = "about/"
+
+            [[languages.en.menu.main]]
+            name = "Blog"
+            weight = 2
+            url = "blog/"
+
+            [[languages.en.menu.main]]
+            name = "Projects"
+            weight = 3
+            url = "projects/"
+
+            [[languages.en.menu.main]]
+            name = "Contact me"
+            weight = 5
+            url = "contact/"
 

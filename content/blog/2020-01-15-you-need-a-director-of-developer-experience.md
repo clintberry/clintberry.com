@@ -1,9 +1,8 @@
 ---
 title: Why You Need a Director of Developer Experience
-draft: true
 author: Clint Berry
 layout: post
-date: 2015-07-01  
+date: 2020-01-15  
 url: /director-of-developer-experience/
 categories:
   - Culture
@@ -47,7 +46,9 @@ As our team grows, and in particular if we raise money, we will need to make thi
 
 # Results so Far
 
-We promoted one of our most senior engineers that was [at the top of his S-curve](https://whitneyjohnson.com/build-an-a-team/) (a.k.a. getting bored in his current role) to this new role and it has been amazing so far. He started with his focus on the hiring process and based on surveys of new employees he increased satisfaction significantly for the new hires.
+We promoted one of our most senior engineers that was [at the top of his S-curve](https://whitneyjohnson.com/build-an-a-team/) (a.k.a. getting bored in his current role) to this new role and it has been amazing so far. He started with his focus on the hiring process and based on surveys of new employees he increased satisfaction significantly for the new hires. I'm excited to watch as this role continues to form and will post a followup post after a year or so letting you know how it has helped our department.
+
+
 
 
 

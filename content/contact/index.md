@@ -16,7 +16,7 @@ seo_noindex:
 ---
 
 ## Twitter
-<a href="https://twitter.com/clinton_berry" class="twitter-follow-button" data-show-count="false" data-size="large" data-dnt="true">Follow @clinton_berry</a>
+[Follow @clinton_berry](https://twitter.com/clinton_berry)
 
 ## LinkedIn
 [http://www.linkedin.com/in/clintonberry](http://www.linkedin.com/in/clintonberry)
