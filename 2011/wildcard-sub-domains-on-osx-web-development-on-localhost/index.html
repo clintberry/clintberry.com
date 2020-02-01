@@ -1,0 +1,62 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Clint Berry"><meta name=description content="Programmer, Entrepreneur, Culture fanatic"><meta name=keywords content="engineering,culture,CTO"><meta name=twitter:card content="summary"><meta name=twitter:title content="Wildcard Sub-Domains on OSX, Web Development on Localhost"><meta name=twitter:description content="Today’s post will be on setting up wildcard subdomains in OSX. This allows you to map folders in your web root to sub-domains on your local box. Why would you want to do this? It is nice to be able to type use http://myproject.clint.dev for the URL and have it map to the ‘myproject’ folder on your local box. No need to add a line to the etc/hosts file, and no need to add a virtual host in apache for each sub-domain. The method I will be outlining here will allow you to map x.yourdevdomain.dev to any folder ‘x’ using Bind and a wildcard virtual host in apache. This tutorial assumes you already have Apache setup on your local box."><meta property="og:title" content="Wildcard Sub-Domains on OSX, Web Development on Localhost"><meta property="og:description" content="Today’s post will be on setting up wildcard subdomains in OSX. This allows you to map folders in your web root to sub-domains on your local box. Why would you want to do this? It is nice to be able to type use http://myproject.clint.dev for the URL and have it map to the ‘myproject’ folder on your local box. No need to add a line to the etc/hosts file, and no need to add a virtual host in apache for each sub-domain. The method I will be outlining here will allow you to map x.yourdevdomain.dev to any folder ‘x’ using Bind and a wildcard virtual host in apache. This tutorial assumes you already have Apache setup on your local box."><meta property="og:type" content="article"><meta property="og:url" content="https://clintberry.com/2011/wildcard-sub-domains-on-osx-web-development-on-localhost/"><meta property="article:published_time" content="2011-05-30T00:00:00+00:00"><meta property="article:modified_time" content="2011-05-30T00:00:00+00:00"><meta property="og:audio" content="[http://]"><base href=https://clintberry.com/2011/wildcard-sub-domains-on-osx-web-development-on-localhost/><title>Wildcard Sub-Domains on OSX, Web Development on Localhost · Clint Berry</title><link rel=canonical href=https://clintberry.com/2011/wildcard-sub-domains-on-osx-web-development-on-localhost/><link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel=stylesheet><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.11.2/css/all.css integrity=sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin=anonymous><link rel=stylesheet href=https://clintberry.com/css/coder.min.624134b411585efffadab6a91e7d0383f0d4e22ad49de3690eccbc96f528e670.css integrity="sha256-YkE0tBFYXv/62rapHn0Dg/DU4irUneNpDsy8lvUo5nA=" crossorigin=anonymous media=screen><link rel=icon type=image/png href=https://clintberry.com/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=https://clintberry.com/images/favicon-16x16.png sizes=16x16><meta name=generator content="Hugo 0.63.1"></head><body class=colorscheme-light><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=https://clintberry.com/>Clint Berry</a>
+<input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fas fa-bars"></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=https://clintberry.com/posts/>Blog</a></li><li class=navigation-item><a class=navigation-link href=https://clintberry.com/about/>About</a></li><li class=navigation-item><a class=navigation-link href=https://clintberry.com/contact/>Contact</a></li></ul></section></nav><div class=content><section class="container post"><article><header><div class=post-title><h1 class=title>Wildcard Sub-Domains on OSX, Web Development on Localhost</h1></div><div class=post-meta><div class=date><span class=posted-on><i class="fas fa-calendar"></i><time datetime=2011-05-30T00:00:00Z>May 30, 2011</time></span>
+<span class=reading-time><i class="fas fa-clock"></i>5-minute read</span></div><div class=categories><i class="fas fa-folder"></i><a href=https://clintberry.com/categories/development-environment/>Development Environment</a></div></div></header><div><p>Today’s post will be on setting up wildcard subdomains in OSX. This allows you to map folders in your web root to sub-domains on your local box. Why would you want to do this? It is nice to be able to type use <em><a href=http://myproject.clint.dev>http://myproject.clint.dev</a></em> for the URL and have it map to the ‘myproject’ folder on your local box. No need to add a line to the etc/hosts file, and no need to add a virtual host in apache for each sub-domain. The method I will be outlining here will allow you to map x.yourdevdomain.dev to any folder ‘x’ using Bind and a wildcard virtual host in apache. This tutorial assumes you already have Apache setup on your local box.</p><h3 id=bind-dns-setup-osx-106><strong>Bind DNS Setup (OSX 10.6+)</strong></h3><p>Bind comes pre-installed on OSx 10.6. All we have to do is configure it and run it. I took these Bind setup instructions from <a href=http://jessedearing.com/nodes/9-setting-up-wildcard-subdomains-on-os-x-10-6 target=_blank>Jesse Dearing’s blog</a>. I hope he doesn’t mind.</p><p><a href=http://www.isc.org/software/bind target=_blank>BIND</a> is the little piece of software the runs the internet. BIND is a DNS server and it works in a distributed fashion. It’s really fascinating <a href=http://www.howstuffworks.com/dns1.htm target=_blank>how DNS works</a> but that’s outside the scope of this post. There are a few steps to get BIND set up to serve domains and they are crucial.</p><ol><li><code>sudo -s</code></li></ol><pre><code>This will let you run a shell as root. I suggest doing this because most of the next commands you will execute need to be on privileged files and directories.
+</code></pre><ol start=2><li>Create the <code>rndc.conf</code> and <code>rndc.key</code></li></ol><pre><code>You can easily do this by running the following commands:
+
+`rndc-confgen &gt; /etc/rndc.conf`
+
+`head -n5 /etc/rndc.conf |tail -n4 &gt; /etc/rndc.key`
+</code></pre><ol start=3><li><p>Add the zone to <code>/etc/named.conf</code> I am going to use .dev for all my examples. I have used .local on my machine but I have found that this can be troublesome with the OS X default Multicast being .local. You can make this whatever top level domain you would like (.dev, .rails, .php, etc.) In <code>/etc/named.conf </code>add:<pre class="wp-code-highlight prettyprint">&lt;code&gt; zone &ldquo;dev&rdquo; IN { type master; file &ldquo;dev.zone&rdquo;; allow-update { none; }; }; &lt;/code&gt;</pre></p></li><li><p>Create <code>/var/named/dev.zone</code></p></li></ol><pre><code>Use this template for your zone file:&lt;/p&gt; &lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;$TTL 60 $ORIGIN dev. @ 1D IN SOA localhost. root.localhost. ( 
+42 ; 
+serial (d. adams) 3H ; 
+refresh 15M ; 
+retry 1W ; 
+expiry 1D ) ; 
+</code></pre><p>minimum 1D IN NS localhost 1D IN A 127.0.0.1 localhost.dev. 60 IN A 127.0.0.1 *.dev. 60 IN A 127.0.0.1</pre></p><pre><code>The only thing you should have to change is the serial (42) to any random number and if you decided to go with something else other than .dev: everthing that has .dev in it. Note that the dots (.) after the dev entries are intentional and required.&lt;/li&gt; 
+
+  * `launchctl load -w /System/Library/LaunchDaemons/org.isc.named.plist`
+
+    This will cause named to load everytime the system restarts.
+  * `named`
+
+    This loads named now. It doesn’t give you any input if it fails to load so I recommend running `named -g` first to make sure it parses you zones and configs. `-g` will tell named to run in the forground and write all logging to STDOUT. Once you’ve verified that it starts then Ctrl-c and run `named` as normal.&lt;/ol&gt; 
+
+#### Create the resolver {#create-the-resolver}
+
+Next we have to create an entry in the /etc/resolver folder. This folder is checked every time a DNS entry is looked up. If a file exists here then it will use the special resolv configuration to look up DNS names. Here you can specify custom domains, search orders, and in this case nameservers. The resolver folder may not exist in the /etc directory. If it doesn&amp;#8217;t, create it.
+
+Create a file with the root domain you want to use for your projects.. I.e. if your root domain is `clint.dev` then create the file `clint.dev` and inside it put:
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;&amp;lt;code&amp;gt;nameserver 127.0.0.1 &amp;lt;/code&amp;gt;&lt;/pre&gt;
+
+Now when you go to http://clint.dev your root web directory should load, but you can also go to http://www.clint.dev or http://theskyisblue.clint.dev and it should still go to your root web directory.
+
+Log out of the root shell by typing exit.
+
+Your wildcard DNS settings are now ready to go.
+
+## Apache Setup
+
+Now we need to get apache to route to the correct folder based on the sub-domain used. Using the example from before, we want http://myproject.clint.dev to go to the folder &amp;#8216;myproject&amp;#8217; in my web root. To accomblish this we setup a vhost in the apache configuration file (httpd.conf). Depending on your Apache setup, the file can be in different locations. Because I use ZendServer community edition, I add a separate file in the `/usr/local/zend/apache2/conf.d` directory. I call my file dev.conf and add the following lines:
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;NameVirtualHost *:80 
+</code></pre><p>ServerAdmin <a href=mailto:webmaster@local.web>webmaster@local.web</a>
+DocumentRoot &ldquo;/Users/clint/Sites&rdquo;
+ServerName clint.dev ServerAlias <em>.clint.dev
+RewriteEngine on
+RewriteCond %{HTTP_HOST} !^www.</em> [NC]
+RewriteCond %{HTTP_HOST} ^([^.]+).clint.dev
+RewriteCond /Users/clint/Sites/%1/public -d
+RewriteRule ^(.<em>) /%1/public/$1 [L]
+RewriteCond %{HTTP_HOST} !^www.</em> [NC]
+RewriteCond %{HTTP_HOST} ^([^.]+).clint.dev
+RewriteCond /Users/clint/Sites/%1 -d
+RewriteRule ^(.*) /%1/$1 [L]</pre></p><pre><code>This virtual host checks to make sure the folder exists for that project, and checks to see if a public directory exists (Zend Framework apps). If the public directory exists, it uses that directory as the document root for that subdomain. If public doesn&amp;#8217;t exist, it just uses the project folder as the document root. If niether exists, then it will just use the Sites directory as the document root (the default document root).
+
+**Note: Make sure to change any &amp;#8216;/Users/clint/Sites&amp;#8217; to whatever directory your document root is to be. Also change the .clint.dev to your custom development domain.**
+
+After that, all your subdomains will map to project folders in your document root. Let me know if you have any questions.</code></pre></div><footer></footer></article></section></div><footer class=footer><section class=container>© 2010 - 2020
+Clint Berry
+·
+Powered by <a href=https://gohugo.io/>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/>Coder</a>.</section></footer></main><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','UA-7117674-2','auto');ga('send','pageview');}</script></body></html>

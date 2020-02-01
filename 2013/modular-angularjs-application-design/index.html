@@ -1,0 +1,54 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Clint Berry"><meta name=description content="Programmer, Entrepreneur, Culture fanatic"><meta name=keywords content="engineering,culture,CTO"><meta name=twitter:card content="summary"><meta name=twitter:title content="Modular AngularJS App Design"><meta name=twitter:description content="I am a sucker for modules. Something about bundling a set of functionality and display logic into a module that can be easily redistributed for many apps makes my skin tingle. So when I saw that “modules” were a big part of the AngularJS methodology, I was super excited to try it out. I quickly realized however, that most of the examples online used one module for the entire application, which didn’t seem all that modular to me."><meta property="og:title" content="Modular AngularJS App Design"><meta property="og:description" content="I am a sucker for modules. Something about bundling a set of functionality and display logic into a module that can be easily redistributed for many apps makes my skin tingle. So when I saw that “modules” were a big part of the AngularJS methodology, I was super excited to try it out. I quickly realized however, that most of the examples online used one module for the entire application, which didn’t seem all that modular to me."><meta property="og:type" content="article"><meta property="og:url" content="https://clintberry.com/2013/modular-angularjs-application-design/"><meta property="article:published_time" content="2013-04-29T00:00:00+00:00"><meta property="article:modified_time" content="2013-04-29T00:00:00+00:00"><base href=https://clintberry.com/2013/modular-angularjs-application-design/><title>Modular AngularJS App Design · Clint Berry</title><link rel=canonical href=https://clintberry.com/2013/modular-angularjs-application-design/><link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel=stylesheet><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.11.2/css/all.css integrity=sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin=anonymous><link rel=stylesheet href=https://clintberry.com/css/coder.min.624134b411585efffadab6a91e7d0383f0d4e22ad49de3690eccbc96f528e670.css integrity="sha256-YkE0tBFYXv/62rapHn0Dg/DU4irUneNpDsy8lvUo5nA=" crossorigin=anonymous media=screen><link rel=icon type=image/png href=https://clintberry.com/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=https://clintberry.com/images/favicon-16x16.png sizes=16x16><meta name=generator content="Hugo 0.63.1"></head><body class=colorscheme-light><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=https://clintberry.com/>Clint Berry</a>
+<input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fas fa-bars"></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=https://clintberry.com/posts/>Blog</a></li><li class=navigation-item><a class=navigation-link href=https://clintberry.com/about/>About</a></li><li class=navigation-item><a class=navigation-link href=https://clintberry.com/contact/>Contact</a></li></ul></section></nav><div class=content><section class="container post"><article><header><div class=post-title><h1 class=title>Modular AngularJS App Design</h1></div><div class=post-meta><div class=date><span class=posted-on><i class="fas fa-calendar"></i><time datetime=2013-04-29T00:00:00Z>April 29, 2013</time></span>
+<span class=reading-time><i class="fas fa-clock"></i>3-minute read</span></div><div class=categories><i class="fas fa-folder"></i><a href=https://clintberry.com/categories/angular/>Angular</a></div></div></header><div><p><img src=http://clintberry.com/images/angular-module1.png alt="angular module" width=225 height=200 class="alignleft size-full wp-image-836"></p><p>I am a sucker for modules. Something about bundling a set of functionality and display logic into a module that can be easily redistributed for many apps makes my skin tingle. So when I saw that “modules” were a big part of the AngularJS methodology, I was super excited to try it out. I quickly realized however, that most of the examples online used one module for the entire application, which didn’t seem all that modular to me.</p><p>At my current company we are developing an app that is ideal for the modular approach. We essentially have separate “apps” within our application, each of which we have bundled into full angular modules. This methodology could be used for many other applications as well so I thought I would share our approach.</p><div class="alert alert-info">Note: Credit for this structure design goes to my coworker and friend <a href=https://twitter.com/tphalp title=Tyson target=_blank>@tphalp</a> who is rapidly becoming an angular expert and teaching me his ways.</div><h4 id=directory-structure>Directory Structure</h4><p>Here is the way we setup our directory structure:</p><p><img src=http://clintberry.com/images/Screen-Shot-2013-04-23-at-7.23.24-PM.png alt="App Structure" width=315 height=363 class="alignnone size-full wp-image-807"></p><p>You can see we have the standard app directory similar to angular seed or a yeoman generated project. But we add a modules directory within the app directory. Each module then has its own sub-directory and a file for directives, controllers, filters and services and a directory for views.</p><p>I am still somewhat conflicted on wether I should be creating a new file for each directive/controller/filter/service or if the current way is fine. Sometimes the files get to be too large an unwieldy and I want them broken up.</p><p>here is a shot further down the tree:</p><p><img src=http://clintberry.com/images/Screen-Shot-2013-04-23-at-7.23.56-PM.png alt="More app structure" width=220 height=170 class="alignnone size-full wp-image-817"></p><p>We still maintain the scripts folder which houses app.js and our routes.js file for handling the routing.</p><h4 id=defining-the-modules>Defining the Modules</h4><p>Let’s have a look at the app.js file where we setup our modules and define dependencies.</p><pre class="wp-code-highlight prettyprint">// Define all your modules with no dependencies
+angular.module(&#039;BirthdayApp&#039;, []);
+angular.module(&#039;CollectionApp&#039;, []);
+angular.module(&#039;DashboardApp&#039;, []);
+angular.module(&#039;LoginApp&#039;, []);
+angular.module(&#039;MessageApp&#039;, []);
+angular.module(&#039;PatientApp&#039;, []);
+angular.module(&#039;PhoneApp&#039;, []);
+angular.module(&#039;ReportsApp&#039;, []);
+
+// Lastly, define your "main" module and inject all other modules as dependencies
+angular.module(&#039;MainApp&#039;,
+  [
+    &#039;BirthdayApp&#039;,
+    &#039;CollectionApp&#039;,
+    &#039;DashboardApp&#039;,
+    &#039;LoginApp&#039;,
+    &#039;MessageApp&#039;,
+    &#039;PatientApp&#039;,
+    &#039;PhoneApp&#039;,
+    &#039;ReportsApp&#039;,
+    &#039;templates-main&#039;,
+  ]
+);
+
+</pre><h5 id=nbsp> </h5><p>Creating a “MainAppModule” allows us to inject all our other modules which in turn allows each of our other modules to access each other. So if the Reports module needs to access something from the Patient module, it will be able to with this method without having to inject the Patient module directly into the Reports module.</p><p>The MainApp also allows us to do routing and use ng-view in our index.html file:</p><pre class="wp-code-highlight prettyprint">&lt;html&gt;
+// ...
+&lt;body ng-app="MainApp"&gt;
+    &lt;div ng-view&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre><h5 id=nbsp-1> </h5><p>Then you define your routes on the MainApp module</p><pre class="wp-code-highlight prettyprint">// scripts/routes.js
+angular.module(&#039;MainApp&#039;)
+  .config(
+    [&#039;$routeProvider&#039;,
+      function($routeProvider) {
+        $routeProvider
+          .when(&#039;/&#039;, {
+            templateUrl: &#039;modules/dashboard/views/index.html&#039;,
+            action: &#039;DashboardApp.DashboardCtrl&#039;
+          })
+   // ...
+
+</pre><h4 id=implementing-your-modules>Implementing Your Modules</h4><p>Now when we go to add a directive/service/filter/controller to a module, we open up the appropriate file within that module and simply use the appropriate module name when we define it.</p><pre class="wp-code-highlight prettyprint">// app/modules/patient/controllers.js
+angular.module(&#039;PatientApp&#039;).controller(&#039;PatientCtrl&#039;, function($scope) {
+ $scope.patients = "something";
+});
+</pre><h5 id=nbsp-2> </h5><p>Since we inject all modules into a “global” module you will need to take care to namespace your angular elements appropriately so you don’t run into name conflicts. Take a look at <a href=https://github.com/angular-ui/bootstrap title="Angular Bootstrap Github" target=_blank>angular bootstrap code</a> too see how they use multiple modules and namespace them.</p><p>And that is it! Now you can make reusable modules for angular that you can use in different apps, or even <a href=http://briantford.com/blog/angular-bower.html title="angular modules in bower" target=_blank>contribute your module to Bower</a> if it is something that will benefit the community.</p><p>Hope this helps!</p></div><footer></footer></article></section></div><footer class=footer><section class=container>© 2010 - 2020
+Clint Berry
+·
+Powered by <a href=https://gohugo.io/>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/>Coder</a>.</section></footer></main><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','UA-7117674-2','auto');ga('send','pageview');}</script></body></html>

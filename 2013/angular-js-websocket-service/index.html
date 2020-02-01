@@ -1,0 +1,129 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Clint Berry"><meta name=description content="Programmer, Entrepreneur, Culture fanatic"><meta name=keywords content="engineering,culture,CTO"><meta name=twitter:card content="summary"><meta name=twitter:title content="AngularJS WebSocket Service Example"><meta name=twitter:description content="At my curent company we are using Angular.js for a new desktop application (yes, a desktop application, but I won’t get into that). Our app gets its data and events from a web service via a WebSocket connection. Angular comes bundled with some great tools to connect to REST servers, but it doesn’t come with anything to help you with real-time data (and it probably shouldn’t).
+Here is an example of an Angular service (factory) that uses WebSockets to get data:"><meta property="og:title" content="AngularJS WebSocket Service Example"><meta property="og:description" content="At my curent company we are using Angular.js for a new desktop application (yes, a desktop application, but I won’t get into that). Our app gets its data and events from a web service via a WebSocket connection. Angular comes bundled with some great tools to connect to REST servers, but it doesn’t come with anything to help you with real-time data (and it probably shouldn’t).
+Here is an example of an Angular service (factory) that uses WebSockets to get data:"><meta property="og:type" content="article"><meta property="og:url" content="https://clintberry.com/2013/angular-js-websocket-service/"><meta property="article:published_time" content="2013-04-23T00:00:00+00:00"><meta property="article:modified_time" content="2013-04-23T00:00:00+00:00"><base href=https://clintberry.com/2013/angular-js-websocket-service/><title>AngularJS WebSocket Service Example · Clint Berry</title><link rel=canonical href=https://clintberry.com/2013/angular-js-websocket-service/><link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel=stylesheet><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.11.2/css/all.css integrity=sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin=anonymous><link rel=stylesheet href=https://clintberry.com/css/coder.min.624134b411585efffadab6a91e7d0383f0d4e22ad49de3690eccbc96f528e670.css integrity="sha256-YkE0tBFYXv/62rapHn0Dg/DU4irUneNpDsy8lvUo5nA=" crossorigin=anonymous media=screen><link rel=icon type=image/png href=https://clintberry.com/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=https://clintberry.com/images/favicon-16x16.png sizes=16x16><meta name=generator content="Hugo 0.63.1"></head><body class=colorscheme-light><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=https://clintberry.com/>Clint Berry</a>
+<input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fas fa-bars"></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=https://clintberry.com/posts/>Blog</a></li><li class=navigation-item><a class=navigation-link href=https://clintberry.com/about/>About</a></li><li class=navigation-item><a class=navigation-link href=https://clintberry.com/contact/>Contact</a></li></ul></section></nav><div class=content><section class="container post"><article><header><div class=post-title><h1 class=title>AngularJS WebSocket Service Example</h1></div><div class=post-meta><div class=date><span class=posted-on><i class="fas fa-calendar"></i><time datetime=2013-04-23T00:00:00Z>April 23, 2013</time></span>
+<span class=reading-time><i class="fas fa-clock"></i>5-minute read</span></div><div class=categories><i class="fas fa-folder"></i><a href=https://clintberry.com/categories/angular/>Angular</a></div></div></header><div><p><img src=http://clintberry.com/images/angular_logofull.png alt=angular_logofull title=angular_logofull width=382 height=99 class="alignnone size-full wp-image-787"></p><p>At my curent company we are using Angular.js for a new desktop application (yes, a desktop application, but I won’t get into that). Our app gets its data and events from a web service via a WebSocket connection. Angular comes bundled with some great tools to connect to REST servers, but it doesn’t come with anything to help you with real-time data (and it probably shouldn’t).</p><p>Here is an example of an Angular service (factory) that uses WebSockets to get data:</p><pre class="wp-code-highlight prettyprint">angular.module(&#039;MyApp&#039;).factory(&#039;MyService&#039;, [&#039;$q&#039;, &#039;$rootScope&#039;, function($q, $rootScope) {
+    // We return this object to anything injecting our service
+    var Service = {};
+    // Keep all pending requests here until they get responses
+    var callbacks = {};
+    // Create a unique callback ID to map requests to responses
+    var currentCallbackId = 0;
+    // Create our websocket object with the address to the websocket
+    var ws = new WebSocket("ws://localhost:8000/socket/");
+    
+    ws.onopen = function(){  
+        console.log("Socket has been opened!");  
+    };
+    
+    ws.onmessage = function(message) {
+        listener(JSON.parse(message.data));
+    };
+
+    function sendRequest(request) {
+      var defer = $q.defer();
+      var callbackId = getCallbackId();
+      callbacks[callbackId] = {
+        time: new Date(),
+        cb:defer
+      };
+      request.callback_id = callbackId;
+      console.log(&#039;Sending request&#039;, request);
+      ws.send(JSON.stringify(request));
+      return defer.promise;
+    }
+
+    function listener(data) {
+      var messageObj = data;
+      console.log("Received data from websocket: ", messageObj);
+      // If an object exists with callback_id in our callbacks object, resolve it
+      if(callbacks.hasOwnProperty(messageObj.callback_id)) {
+        console.log(callbacks[messageObj.callback_id]);
+        $rootScope.$apply(callbacks[messageObj.callback_id].cb.resolve(messageObj.data));
+        delete callbacks[messageObj.callbackID];
+      }
+    }
+    // This creates a new callback ID for a request
+    function getCallbackId() {
+      currentCallbackId += 1;
+      if(currentCallbackId &gt; 10000) {
+        currentCallbackId = 0;
+      }
+      return currentCallbackId;
+    }
+
+    // Define a "getter" for getting customer data
+    Service.getCustomers = function() {
+      var request = {
+        type: "get_customers"
+      }
+      // Storing in a variable for clarity on what sendRequest returns
+      var promise = sendRequest(request); 
+      return promise;
+    }
+
+    return Service;
+}])
+</pre><h5 id=nbsp> </h5><h4 id=the-details>The Details</h4><p>To explain this code in detail I will walk you through a usage scenario and step through each function and talk about what it does. Assume we have an angular controller called “customerList”. We need to access customer data in our new controller and our customer data comes from a websocket service somewhere in Canada. So you inject your new websocket service into the scope of your controller and you are able to call getCustomers(). Quick and dirty example for illustration purposes:</p><pre class="wp-code-highlight prettyprint">angular.module(&#039;MyApp&#039;)
+  .controller(&#039;customerList&#039;, [&#039;MyService&#039;, function(MyService){
+    $scope.customers = MyService.getCustomers();
+  }]);
+</pre><h5 id=nbsp-1> </h5><p>So the getCustomers function is called and we see that the getCustomers function creates a request object literal and passes that to the sendRequest() function:</p><pre class="wp-code-highlight prettyprint">// Define a "getter" for getting customer data
+    Service.getCustomers = function() {
+      var request = {
+        type: "get_customers"
+      }
+      // Storing in a variable for clarity on what sendRequest returns
+      var promise = sendRequest(request); 
+      return promise;
+    }
+</pre><h5 id=nbsp-2> </h5><p>You can see I am storing the response from sendRequest() in a variable called promise. I then return that promise. Let’s look at what sendRequest() actually does:</p><pre class="wp-code-highlight prettyprint">function sendRequest(request) {
+      var defer = $q.defer();
+      var callbackId = getCallbackId();
+      callbacks[callbackId] = {
+        time: new Date(),
+        cb:defer
+      };
+      request.callback_id = callbackId;
+      console.log(&#039;Sending request&#039;, request);
+      ws.send(JSON.stringify(request));
+      return defer.promise;
+    }
+</pre><h5 id=nbsp-3> </h5><p>The sendRequest function first creates a defer object from the <a href=https://github.com/kriskowal/q title="Q Library" target=_blank>Q library</a> that is bundled with Angular. (For more information on deferred objects and promises in angular I highly recommend the <a href=http://www.egghead.io/video/o84ryzNp36Q title="Promises in Angularjs" target=_blank>egghead.io video on promises</a>) After that it creates a new callbackId variable and then adds an object literal to the callbacks object using the new callbackId as the index.</p><h4 id=so-why-have-a-callback-id-and-a-callbacks-object>So why have a callback ID and a callbacks object?</h4><p>The callbacks variable is where I will store all requests that haven’t received a response yet. Because services implemented on the websocket side can be asynchronous, you could potentially send several requests to the websocket and the websocket could return responses in a different order than it received requests. This is where callback Ids come into play. Usually websocket servers will have a way for you to map responses from the websocket server to requests that you sent to it. Sending a user-generated callback_id to the websocket is one way to do this. In my case, I start at 0 and work my way up to 10000 then start over. You can see this in my getCallback() function:</p><pre class="wp-code-highlight prettyprint">// This creates a new callback ID for a request
+    function getCallbackId() {
+      currentCallbackId += 1;
+      if(currentCallbackId &gt; 10000) {
+        currentCallbackId = 0;
+      }
+      return currentCallbackId;
+    }
+</pre><h5 id=nbsp-4> </h5><p>Now back to sendRequest. After the callbackId is generated, and the deferred is stored in the callbacks variable, we add the new callbackId to the request message:</p><pre class="wp-code-highlight prettyprint">request.callback_id = callbackId;
+</pre><h5 id=nbsp-5> </h5><p>Then we send the request object to the websocket and return a promise:</p><pre class="wp-code-highlight prettyprint">ws.send(JSON.stringify(request));
+    return defer.promise;
+</pre><h5 id=nbsp-6> </h5><p>Now out in Canada somewhere, our websocket server processes the request and sends back a list of customers to us through the websocket. When data comes in from the websocket we call the listener function:</p><pre class="wp-code-highlight prettyprint">ws.onmessage = function(message) {
+        listener(message);
+    };
+</pre><h5 id=nbsp-7> </h5><p>The listener looks at the message coming in and sees that it looks something like this:</p><pre class="wp-code-highlight prettyprint">{
+  "result": true,
+  "callback_id": 1,
+  "data": [
+    {
+      first_name: Danny,
+      last_name: Ocean
+    },
+    {
+      first_name: Rusty,
+      last_name: Ryan
+    }
+  ]
+}
+</pre><h5 id=nbsp-8> </h5><p>The listener() function sees the callback_id property and looks in our callbacks variable to see if we have a pending request waiting to be resolved. If there is one, it resolves the deferred object and deletes the callback object from the callbacks object-literal/dictionary/named-array:</p><pre class="wp-code-highlight prettyprint">if(callbacks.hasOwnProperty(messageObj.callback_id)) {
+      console.log(callbacks[messageObj.callback_id]);
+      $rootScope.$apply(callbacks[messageObj.callback_id].cb.resolve(messageObj.data));
+      delete callbacks[messageObj.callbackID];
+    }
+</pre><p>And then, lo and behold, our scope variable, $scope.customers, is populated with our new customer list! And now you have a functioning websocket service. <img src=http://clintberry.com/wp-includes/images/smilies/simple-smile.png alt=:-) class=wp-smiley style=height:1em;max-height:1em></p><p>I know this all can seem like a lot if you are new to angular or haven’t heard of promises before. Feel free to ask any questions in the comments or email me on my contact form if you need help. I am usually pretty good about getting back to you.</p></div><footer></footer></article></section></div><footer class=footer><section class=container>© 2010 - 2020
+Clint Berry
+·
+Powered by <a href=https://gohugo.io/>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/>Coder</a>.</section></footer></main><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','UA-7117674-2','auto');ga('send','pageview');}</script></body></html>

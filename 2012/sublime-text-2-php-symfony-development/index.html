@@ -1,0 +1,81 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Clint Berry"><meta name=description content="Programmer, Entrepreneur, Culture fanatic"><meta name=keywords content="engineering,culture,CTO"><meta name=twitter:card content="summary"><meta name=twitter:title content="Sublime Text 2 for PHP & WordPress Development"><meta name=twitter:description content="Sublime Text 2 is an amazing code editor that I started using on the recommendation of a friend. I fell in love and haven’t looked back. Here are some recomendations for setting up Sublime Text 2 for PHP and WordPress development."><meta property="og:title" content="Sublime Text 2 for PHP & WordPress Development"><meta property="og:description" content="Sublime Text 2 is an amazing code editor that I started using on the recommendation of a friend. I fell in love and haven’t looked back. Here are some recomendations for setting up Sublime Text 2 for PHP and WordPress development."><meta property="og:type" content="article"><meta property="og:url" content="https://clintberry.com/2012/sublime-text-2-php-symfony-development/"><meta property="article:published_time" content="2012-02-02T00:00:00+00:00"><meta property="article:modified_time" content="2012-02-02T00:00:00+00:00"><base href=https://clintberry.com/2012/sublime-text-2-php-symfony-development/><title>Sublime Text 2 for PHP & WordPress Development · Clint Berry</title><link rel=canonical href=https://clintberry.com/2012/sublime-text-2-php-symfony-development/><link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel=stylesheet><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.11.2/css/all.css integrity=sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin=anonymous><link rel=stylesheet href=https://clintberry.com/css/coder.min.624134b411585efffadab6a91e7d0383f0d4e22ad49de3690eccbc96f528e670.css integrity="sha256-YkE0tBFYXv/62rapHn0Dg/DU4irUneNpDsy8lvUo5nA=" crossorigin=anonymous media=screen><link rel=icon type=image/png href=https://clintberry.com/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=https://clintberry.com/images/favicon-16x16.png sizes=16x16><meta name=generator content="Hugo 0.63.1"></head><body class=colorscheme-light><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=https://clintberry.com/>Clint Berry</a>
+<input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fas fa-bars"></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=https://clintberry.com/posts/>Blog</a></li><li class=navigation-item><a class=navigation-link href=https://clintberry.com/about/>About</a></li><li class=navigation-item><a class=navigation-link href=https://clintberry.com/contact/>Contact</a></li></ul></section></nav><div class=content><section class="container post"><article><header><div class=post-title><h1 class=title>Sublime Text 2 for PHP & WordPress Development</h1></div><div class=post-meta><div class=date><span class=posted-on><i class="fas fa-calendar"></i><time datetime=2012-02-02T00:00:00Z>February 2, 2012</time></span>
+<span class=reading-time><i class="fas fa-clock"></i>5-minute read</span></div><div class=categories><i class="fas fa-folder"></i><a href=https://clintberry.com/categories/development-environment/>Development Environment</a>
+<span class=separator>•</span>
+<a href=https://clintberry.com/categories/php/>PHP</a>
+<span class=separator>•</span>
+<a href=https://clintberry.com/categories/wordpress/>Wordpress</a></div></div></header><div><p>Sublime Text 2 is an amazing code editor that I started using on the recommendation of a friend. I fell in love and haven’t looked back. Here are some recomendations for setting up Sublime Text 2 for PHP and WordPress development.</p><h3 id=why-is-sublime-text-2-awesome>Why is Sublime Text 2 Awesome?</h3><p>Where do I start… Here are some of my favorite features:</p><ul><li>It is light weight. The download size is under 10 megs and it runs fast</li><li>It is VERY customizable. Every key binding and setting imaginable is available to customize</li><li>Plugins, plugins, plugins. ST2 has a built in python interpreter which allows web developers to create custom plugins. (The only thing that would make it better is if it had node.js bundled in for plugins, but I’ll take Python)</li><li>vim key bindings. Yes, if you love vim, or want to love vim, then you will love sublime text 2, which comes bundled with “vintage mode”, which allows you to use vim keybindings.<ul><li><p>It runs on Windows, OSX, and Linux, so I can use ST2 on almost any computer.</ul>There are <strong>MANY</strong> more reasons. Check out this link for some good ones: <a href=http://net.tutsplus.com/tutorials/tools-and-tips/sublime-text-2-tips-and-tricks/ title="Sublime Text Tips and Tricks" target=_blank>Sublime Text Tips and Tricks</a></p><p>Now you should be fully convinced that Sublime Text is the greatest thing since sliced bread <img src=http://clintberry.com/wp-includes/images/smilies/simple-smile.png alt=:-) class=wp-smiley style=height:1em;max-height:1em>Let’s get it setup for developing PHP applications.</p><h3 id=setting-up-package-management>Setting Up Package Management</h3><p>One of the coolest plugins for ST2 is the package manager. This should be the first plugin you install because it is the gateway to a big list of other great plugins for you. Installation is easy, simply open ST2 and press command+` (on windows ctrl+`) and it will open up the ST2 console. Copy and paste this code into the terminal:</p><pre class="wp-code-highlight prettyprint">import urllib2,os; pf=&#039;Package Control.sublime-package&#039;; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),&#039;wb&#039;).write(urllib2.urlopen(&#039;http://sublime.wbond.net/&#039;+pf.replace(&#039; &#039;,&#039;%20&#039;)).read()); print &#039;Please restart Sublime Text to finish installation&#039;
+</li>
+</ul>
+</li>
+</ul>
+<p></pre></p><pre><code>    &amp;nbsp;
+    
+    That&amp;#8217;s it, you now have package control built into your editor. To access package control, press shift+command+p and start typing &amp;#8220;package&amp;#8221;. (shift+command+p opens the window of all commands in sublime text 2). You will see a list of commands related to package control. Sweet.
+    
+    ### Packages you need
+    
+    Let&amp;#8217;s get this puppy setup for some PHP development!
+    
+    To install a package, type shift+command+p and start typing &amp;#8220;package install&amp;#8221; and hit enter when it is highlighted. Wait a few seconds and it will bring up a list of available packages. Select the package you want to install and then hit enter. That&amp;#8217;s it! Now follow those steps for the following packages:
+    
+    ##### [Sublime Code Intel][1]
+    
+    What use would editing code be without some good autocompletion? CodeIntel provides a better code completion by parsing all the files in your project and creating a nice index of autocomplete options. It also provides click-to-definition functionality by clicking alt-click on a function or variable name. I have found that this plugin isn&amp;#8217;t as consistent or as fast as full IDEs such as Eclipse, but in general is pretty good.
+    
+    ##### [Sublime Linter][2]
+    
+    This plugin gives you real-time error checking in your php code which is standard in most IDEs. Now it is standard in Sublime Text &lt;img src=&quot;http://clintberry.com/wp-includes/images/smilies/simple-smile.png&quot; alt=&quot;:-)&quot; class=&quot;wp-smiley&quot; style=&quot;height: 1em; max-height: 1em;&quot; /&gt;
+    
+    ##### [Zen Coding][3]
+    
+    If you aren&amp;#8217;t using Zen Coding to create your HTML, then you are missing out. This adds zen coding features into sublime text 2.
+    
+    ##### [Sublime JsDocs][4]
+    
+    Don&amp;#8217;t let the name fool you, this plugin is a smart Doc Block generator for PHP as well as JavaScript. It is the best one of any I have tried. To use it, simply type /** in front of the function/variable you want to generate the docs for and hit tab. You will get a nice block generated for you.
+    
+    ##### [WordPress Plugin][5]
+    
+    This plugin adds a bunch of good snippets to have in your snippet/auto-complete library for WordPress. This helps speed up development significantly if you do a lot of wordpress sites.
+    
+    ##### [Git][6] &amp;#038; also [Git Sidebar][7]
+    
+    Git commands integrated into git hub for your favorite version control. As an added bonus, add git functionality to the sidebar context menu as well.
+    
+    ### Syntax Specific Settings
+    
+    One of the greatest things about ST2 is how easy it is to customize. All the settings are simply JSON documents that you can change to meet your needs. Go ahead and open up Preferences-&gt;Global Preferences and you will see all settings that are available. But don&amp;#8217;t change this file, since it gets overwritten during upgrades. Open up the User preferences file and put in any changes that you need. 
+    
+    But if you want to customize setting for only certain syntaxes (like PHP) you can do so by opening a PHP file in the editor and then going to Preferences-&gt;Syntax Specific and you will be able to change settings for only the PHP syntax. For instance I like it when I double click a variable in php for it to select the $ symbol as well, but by default ST2 doesn&amp;#8217;t do this, so I change the PHP settings to not include $ in word separators.
+    
+    &lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;{
+&quot;extensions&quot;:
+[
+    &quot;php&quot;
+],
+</code></pre><p>&ldquo;word_separators&rdquo;: &ldquo;./\()"�-:,.;&lt;>~!@#%^&*|+=[]{}`~?&rdquo;
+}</pre></p><pre><code>    &amp;nbsp;
+    
+    ### Important Shortcut Keys
+    
+    Lastly, I want to include a short list of some short cut keys you will likely enjoy:
+    
+    **Alt+[1-9]** &amp;#8211; Switch to a certain tab
+
+    **Command+P** &amp;#8211; Fast file switching, Line Number, Jump to definition (within file)
+
+    **Alt+.** &amp;#8211; Close a started HTML tag (although I suggest Zen Coding Plugin)
+
+    **Esc** &amp;#8211; Enter Vintage Mode (if enabled)
+
+    **Command+D** &amp;#8211; Multi-select same word. This is VERY COOL.
+    
+    Here are some other good &lt;a href=&quot;http://www.sublimetext.com/forum/viewtopic.php?f=2&amp;#038;t=4198&quot; title=&quot;Sublime Text 2 Shortcut Keys&quot; target=&quot;_blank&quot;&gt;shortcut&lt;/a&gt; &lt;a href=&quot;http://www.sublimetext.com/docs/selection&quot; title=&quot;Sublime Text 2 Shortcut Keys&quot; target=&quot;_blank&quot;&gt;keys&lt;/a&gt;
+    
+    I hope you enjoy Sublime Text as much as I have!
+</code></pre></div><footer></footer></article></section></div><footer class=footer><section class=container>© 2010 - 2020
+Clint Berry
+·
+Powered by <a href=https://gohugo.io/>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/>Coder</a>.</section></footer></main><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','UA-7117674-2','auto');ga('send','pageview');}</script></body></html>

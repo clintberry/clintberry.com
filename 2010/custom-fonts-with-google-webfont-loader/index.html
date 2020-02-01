@@ -1,0 +1,52 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Clint Berry"><meta name=description content="Programmer, Entrepreneur, Culture fanatic"><meta name=keywords content="engineering,culture,CTO"><meta name=twitter:card content="summary"><meta name=twitter:title content="Custom Fonts with Google WebFont Loader"><meta name=twitter:description content="I have recently been working on adding local fonts to my customized version of svg-edit. The idea is to have a font selector with several fonts from my local system. I have been using the recently released Google WebFont Loader API to load font files from my local server into the website. Google has made it easier than ever. (note: Google will collect stats from your website if you use this API, just like they do if you use any of their services.)"><meta property="og:title" content="Custom Fonts with Google WebFont Loader"><meta property="og:description" content="I have recently been working on adding local fonts to my customized version of svg-edit. The idea is to have a font selector with several fonts from my local system. I have been using the recently released Google WebFont Loader API to load font files from my local server into the website. Google has made it easier than ever. (note: Google will collect stats from your website if you use this API, just like they do if you use any of their services.)"><meta property="og:type" content="article"><meta property="og:url" content="https://clintberry.com/2010/custom-fonts-with-google-webfont-loader/"><meta property="article:published_time" content="2010-07-14T00:00:00+00:00"><meta property="article:modified_time" content="2010-07-14T00:00:00+00:00"><base href=https://clintberry.com/2010/custom-fonts-with-google-webfont-loader/><title>Custom Fonts with Google WebFont Loader · Clint Berry</title><link rel=canonical href=https://clintberry.com/2010/custom-fonts-with-google-webfont-loader/><link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel=stylesheet><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.11.2/css/all.css integrity=sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin=anonymous><link rel=stylesheet href=https://clintberry.com/css/coder.min.624134b411585efffadab6a91e7d0383f0d4e22ad49de3690eccbc96f528e670.css integrity="sha256-YkE0tBFYXv/62rapHn0Dg/DU4irUneNpDsy8lvUo5nA=" crossorigin=anonymous media=screen><link rel=icon type=image/png href=https://clintberry.com/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=https://clintberry.com/images/favicon-16x16.png sizes=16x16><meta name=generator content="Hugo 0.63.1"></head><body class=colorscheme-light><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=https://clintberry.com/>Clint Berry</a>
+<input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fas fa-bars"></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=https://clintberry.com/posts/>Blog</a></li><li class=navigation-item><a class=navigation-link href=https://clintberry.com/about/>About</a></li><li class=navigation-item><a class=navigation-link href=https://clintberry.com/contact/>Contact</a></li></ul></section></nav><div class=content><section class="container post"><article><header><div class=post-title><h1 class=title>Custom Fonts with Google WebFont Loader</h1></div><div class=post-meta><div class=date><span class=posted-on><i class="fas fa-calendar"></i><time datetime=2010-07-14T00:00:00Z>July 14, 2010</time></span>
+<span class=reading-time><i class="fas fa-clock"></i>3-minute read</span></div><div class=categories><i class="fas fa-folder"></i><a href=https://clintberry.com/categories/jquery/>jQuery</a></div></div></header><div><p>I have recently been working on adding local fonts to my customized version of svg-edit. The idea is to have a font selector with several fonts from my local system. I have been using the recently released <a href=http://code.google.com/apis/webfonts/docs/webfont_loader.html>Google WebFont Loader API</a> to load font files from my local server into the website. Google has made it easier than ever. (note: Google will collect stats from your website if you use this API, just like they do if you use any of their services.)</p><p>The first thing I needed was font files. Not all browsers are alike when using the css @font-face elements. Paul Irish <a href=http://paulirish.com/2009/bulletproof-font-face-implementation-syntax/>educated me</a> on that one. So I needed different versions of the font file based on the browser. Luckily, Font Squirrel has a <a href=http://www.fontsquirrel.com/fontface/generator>Font Face Generator</a> which generates all the necessary files and the style sheet to boot. I thought to myself: “Dang, that was easier than I thought it would be. I think I’ll donate some money to Font Squirrel for developing that awesome app.” Then I didn’t get around to it… maybe tomorrow.</p><p>Once you have all the font files and style sheet up on your server, you can instantiate them with the Google WebFont Loader. Why not just include the style sheet? For a couple of reasons: 1) You can’t get rid of <a href=http://paulirish.com/2009/fighting-the-font-face-fout/>FOUT</a> 2) If you are loading multiple fonts (like in a font selector) it would take a long time to load them all up-front (Some of the files are 50k+). For my font selector, I want to be able to load the fonts when the font is selected, then it will be cached on the user’s computer for all future requests.</p><p>To keep track of which fonts were loaded (so as not to load them again with WebFont) I created an array with all the font definitions for my selector (Only three to start). I then created the Smm.loadFont function to load the font. The function takes 3 arguments: 1) The font to load 2) [optional] The callback for when the font has finished loading, and 3) [optional] the callback for WHILE the font is loading.</p><pre class="wp-code-highlight prettyprint">var Smm = {
+    fontDirectory: &#039;css/fonts/&#039;,
+    imageDirectory: &#039;css/fonts/font-images/&#039;    
+};
+
+Smm.Fonts = {
+    BrushScript: {
+        cssFile: &#039;BrushScript.css&#039;,
+        imageFile: &#039;brush-script.png&#039;,
+        loadType: &#039;custom&#039;,
+        loaded: false
+    },
+    CloisterBlackLight: {
+        cssFile: &#039;CloisterBlackLight.css&#039;,
+        imageFile: &#039;cloister.png&#039;,
+        loadType: &#039;custom&#039;,
+        loaded: false
+    },
+    Cooper: {
+        cssFile: &#039;Cooper.css&#039;,
+        imageFile: &#039;cooper.png&#039;,
+        loadType: &#039;custom&#039;,
+        loaded: false
+    }
+};
+
+
+Smm.loadFont = function(fontFace, active, loading){
+    console.log(&#039;Loading font: &#039; + fontFace);
+    if(Smm.Fonts[fontFace][&#039;loaded&#039;] === false){
+        Smm.Fonts[fontFace][&#039;loaded&#039;] = true;
+        
+        WebFont.load({
+            custom: { 
+                families: [fontFace],
+                urls: [Smm.fontDirectory+Smm.Fonts[fontFace][&#039;cssFile&#039;]] 
+            },
+            loading: loading,
+            active: active
+        });
+    }
+    else {
+        active();
+    }
+};
+</pre><p>I added the imageFile setting to each font so that a picture would be used instead of text. This allows the user to see a preview of the font without downloading it. The last thing I did, was create the HTML for the font loader.</p><p>UPDATE: I integrated the drop-down into svg-edit. Check out a demo here: <a href=http://clintberry.com/demos/svg-edit-with-fonts/><strong>svg-edit with custom font selector</strong></a></p><p>UPDATE: Get the source code with installation details from my <a href=https://github.com/clintberry/svg-font-loader><strong>github repository</strong></a></p></div><footer></footer></article></section></div><footer class=footer><section class=container>© 2010 - 2020
+Clint Berry
+·
+Powered by <a href=https://gohugo.io/>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/>Coder</a>.</section></footer></main><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','UA-7117674-2','auto');ga('send','pageview');}</script></body></html>
