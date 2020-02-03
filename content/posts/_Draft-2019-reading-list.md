@@ -1,0 +1,36 @@
+---
+title: 2019 Q4 Reading List
+author: Clint Berry
+layout: post
+date: 2019-12-28 
+url: /2019/q4-reading-list/
+tags:
+  - Learning
+---
+
+Here are some of the highlights from my 2019 reading:
+
+## The Infinite Game, by Simon Sinek
+
+You have to have an "infinite mindset" to build the best companies. Short-term focus will never build a resilient and inspiring company. I love this book and would recommend it to anyone helping build a growing business. [More Info][4]
+
+## Accelerate, by Nicole Forsgren, Jez Humble, and Gene Kim
+
+This came out in 2018, but it had a big enough impact I wanted to make sure to put it down on the this first quarterly list. Measuring the key factors that influence software delivery performance is not an easy task, but Accelerate provides the best data I have seen and the key metrics you need to be measuring to make sure your engineering teams are getting higher levels of throughput, stability, and quality. A must read for engineering leadership and a full review on how we are applying it at Weave is in the works. [More Info][1]
+
+## High Output Management, by Andy Grove
+
+This book is 20 years old, and I am slightly embarrassed that it is on my 2019 reading list. It was recommended to me by one of our engineering managers and after I read it, I realized I needed to read it when I started my career 15 years ago. [More Info][2]
+
+## How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh, by Zhamak Dehghani
+
+Zhamak gave an amazing presentation on this topic at Qcon SF this year. That video hasn't been released yet, but her blog post is a great read if you are tackling complex data architecture initiatives at your company. [More Info][3]
+
+[1]: https://itrevolution.com/book/accelerate/
+[2]: https://www.penguinrandomhouse.com/books/72467/high-output-management-by-andrew-s-grove-former-chairman-and-ceo-of-intel/
+[3]: https://martinfowler.com/articles/data-monolith-to-mesh.html
+[4]: https://simonsinek.com/the-infinite-game?ref=home
+
+
+
+
